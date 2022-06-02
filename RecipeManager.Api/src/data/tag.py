@@ -17,6 +17,7 @@ def get_all_tags(db: sql.Connection) -> list[Tag]:
 def create_tag(db: sql.Connection, name: str) -> int:
     query = "INSERT INTO 'Tag' (Name) VALUES (?)"
     db.execute(query, [name])
+    db.commit()
     return int(db.execute("SELECT last_insert_rowid()").fetchone()[0])
 
 
