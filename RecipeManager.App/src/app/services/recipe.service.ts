@@ -38,23 +38,20 @@ export class RecipeService {
       }));
   }
 
-  public async createRecipe(name: string, shortDescription: string, longDescription: string): Promise<void> {
-    await this._buildUrl("create")
-      .then(url => {
-        let params = {
-          'name': name,
-          'short-description': shortDescription,
-          'long-description': longDescription
+  public async createRecipe(name: string, shortDescription: string, longDescription: string) {
+    return await this._buildUrl("create")
+      .then(url => this._http.post(url, {
+          params: {
+            'name': name,
+            'short-description': shortDescription,
+            'long-description': longDescription
+          }
         }
-
-        this._http.post(url, {
-          params: params
-        }
-      )});
+      ));
   }
 
   private async _buildUrl(endpoint: string): Promise<string> {
-    return this._configService.getConfig()
+    return await this._configService.getConfig()
       .then(config => `${config.api.baseUrl}/recipe/${endpoint}`);
   }
 }

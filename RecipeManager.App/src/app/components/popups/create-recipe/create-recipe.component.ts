@@ -19,7 +19,11 @@ export class CreateRecipeComponent implements OnInit {
   }
 
   public async handleSubmit(ev: Event): Promise<void> {
-    await this._recipeService.createRecipe(this.recipeName, this.recipeShortDescription, this.recipeLongDescription);
+    await this._recipeService.createRecipe(this.recipeName, this.recipeShortDescription, this.recipeLongDescription)
+     .then(res => res.subscribe({
+       next: data => console.log(data),
+       error: err => console.error(err)
+     }));
     this._clearForm();
   }
 
