@@ -35,7 +35,7 @@ def get_recipes_by_tag_id(db: sql.Connection, tag_id: int) -> list[Recipe]:
         JOIN 'RecipeTagMap' RTM 
         ON (R.Id = RTM.RecipeId) 
         WHERE RTM.TagId = ?
-        """
+    """
     return [Recipe(*recipe_data) for recipe_data in db.execute(query, [tag_id]).fetchall()]
 
 

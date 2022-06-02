@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ConfigService } from "./config.service";
 import { Recipe } from "../types/recipe";
 import { Observable } from "rxjs";
@@ -40,14 +40,11 @@ export class RecipeService {
 
   public async createRecipe(name: string, shortDescription: string, longDescription: string) {
     return await this._buildUrl("create")
-      .then(url => this._http.post(url, {
-          params: {
-            'name': name,
-            'short-description': shortDescription,
-            'long-description': longDescription
-          }
-        }
-      ));
+      .then(url => this._http.post(url, {'name': name, 'short-description': shortDescription, 'long-description': longDescription}, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      }));
   }
 
   private async _buildUrl(endpoint: string): Promise<string> {
