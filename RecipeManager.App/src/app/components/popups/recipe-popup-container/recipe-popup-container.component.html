@@ -1,0 +1,4 @@
+<div class="recipe-popup-container">
+  <button class="toggle-popup-button" (click)="toggleCreateRecipePopup()">+</button>
+</div>
+<app-create-recipe class="recipe-popup" *ngIf="!createRecipeHidden" (closeWindow)="toggleCreateRecipePopup()"></app-create-recipe>

@@ -11,6 +11,7 @@ import { TagFilterComponent } from './components/tag-filter/tag-filter.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterMiddlewareComponent } from './components/filter-middleware/filter-middleware.component';
 import { CreateRecipeComponent } from './components/popups/create-recipe/create-recipe.component';
+import { RecipePopupContainerComponent } from './components/popups/recipe-popup-container/recipe-popup-container.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CreateRecipeComponent } from './components/popups/create-recipe/create-
     TagListComponent,
     TagFilterComponent,
     FilterMiddlewareComponent,
-    CreateRecipeComponent
+    CreateRecipeComponent,
+    RecipePopupContainerComponent
   ],
   imports: [
     BrowserModule,

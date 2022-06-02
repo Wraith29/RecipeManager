@@ -8,7 +8,7 @@ import { Tag } from "../../types/tag";
   styleUrls: ['./tag-filter.component.less']
 })
 export class TagFilterComponent implements OnInit {
-  @Output() selectedFilter = new EventEmitter<number>();
+  @Output() public selectedFilter = new EventEmitter<number>();
   public tags!: Tag[];
   public NO_FILTER: number = -1;
   public selectedId: number = this.NO_FILTER;

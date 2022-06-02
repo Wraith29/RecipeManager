@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
   styleUrls: ['./create-recipe.component.less']
 })
 export class CreateRecipeComponent implements OnInit {
+  @Output() public closeWindow = new EventEmitter<boolean>();
   public recipeName!: string;
   public recipeShortDescription!: string;
   public recipeLongDescription!: string;
@@ -15,8 +16,7 @@ export class CreateRecipeComponent implements OnInit {
     private _recipeService: RecipeService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public async handleSubmit(ev: Event): Promise<void> {
     await this._recipeService.createRecipe(this.recipeName, this.recipeShortDescription, this.recipeLongDescription)
@@ -25,6 +25,10 @@ export class CreateRecipeComponent implements OnInit {
        error: err => console.error(err)
      }));
     this._clearForm();
+  }
+
+  public closeWindowPresed(): void {
+    this.closeWindow.emit(true);
   }
 
   private _clearForm(): void {
