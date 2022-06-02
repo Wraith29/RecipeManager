@@ -14,6 +14,6 @@ export class FilterMiddlewareComponent implements OnInit {
   }
 
   public catchFilterId(tagId: number): void {
-    console.log(tagId);
+    this.currentFilter = tagId;
   }
 }

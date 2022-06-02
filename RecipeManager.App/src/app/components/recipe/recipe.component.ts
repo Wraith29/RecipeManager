@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TagService } from "../../services/tag.service";
 import { Recipe } from "../../types/recipe";
 
 @Component({
@@ -10,9 +9,6 @@ import { Recipe } from "../../types/recipe";
 export class RecipeComponent implements OnInit {
   @Input() public recipe!: Recipe
 
-  constructor(
-    private _tagService: TagService
-  ) { }
-
+  constructor() { }
   ngOnInit(): void {}
 }

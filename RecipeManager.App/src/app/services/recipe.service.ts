@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { ConfigService } from "./config.service";
 import { Recipe } from "../types/recipe";
-import { Config } from "../types/config";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -14,14 +13,14 @@ export class RecipeService {
     private _configService: ConfigService
   ) {}
 
-  public getAllRecipes(): Promise<Observable<Recipe[]>> {
-    return this._buildUrl("all")
+  public async getAllRecipes(): Promise<Observable<Recipe[]>> {
+    return await this._buildUrl("all")
       .then(url => this._http.get<Recipe[]>(url)
     );
   }
 
-  public getRecipeById(recipeId: number): Promise<Observable<Recipe>> {
-    return this._buildUrl("by-id")
+  public async getRecipeById(recipeId: number): Promise<Observable<Recipe>> {
+    return await this._buildUrl("by-id")
       .then(url => this._http.get<Recipe>(url, {
         params: {
           "recipe-id": recipeId
@@ -30,13 +29,28 @@ export class RecipeService {
     );
   }
 
-  public getRecipesByTag(tagId: number): Promise<Observable<Recipe[]>> {
-    return this._buildUrl("by-tag")
+  public async getRecipesByTag(tagId: number): Promise<Observable<Recipe[]>> {
+    return await this._buildUrl("by-tag")
       .then(url => this._http.get<Recipe[]>(url, {
         params: {
           'tag-id': tagId
         }
       }));
+  }
+
+  public async createRecipe(name: string, shortDescription: string, longDescription: string): Promise<void> {
+    await this._buildUrl("create")
+      .then(url => {
+        let params = {
+          'name': name,
+          'short-description': shortDescription,
+          'long-description': longDescription
+        }
+
+        this._http.post(url, {
+          params: params
+        }
+      )});
   }
 
   private async _buildUrl(endpoint: string): Promise<string> {

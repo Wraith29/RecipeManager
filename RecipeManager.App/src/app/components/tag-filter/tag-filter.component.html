@@ -1,4 +1,4 @@
 <select [(ngModel)]="selectedId" (change)="updateFilter($event)" title="Filter Recipes">
-  <option [value]="PRESELECTED" disabled selected>&lt;Filter&gt;</option>
+  <option [value]="NO_FILTER" selected>No Filter</option>
   <option *ngFor="let tag of tags" [value]="tag.id">{{tag.name}}</option>
 </select>

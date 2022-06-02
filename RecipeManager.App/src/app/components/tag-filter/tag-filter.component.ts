@@ -10,8 +10,8 @@ import { Tag } from "../../types/tag";
 export class TagFilterComponent implements OnInit {
   @Output() selectedFilter = new EventEmitter<number>();
   public tags!: Tag[];
-  public PRESELECTED: number = -1;
-  public selectedId: number = this.PRESELECTED;
+  public NO_FILTER: number = -1;
+  public selectedId: number = this.NO_FILTER;
 
   constructor(
     private _tagService: TagService

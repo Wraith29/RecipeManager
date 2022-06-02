@@ -8,10 +8,10 @@ import { Recipe } from "../../types/recipe";
   styleUrls: ['./recipes.component.less']
 })
 export class RecipesComponent implements OnInit {
-  private _tagFilter!: number;
+  private _tagFilter: number = -1;
   @Input() public set tagFilter(tagId: number) {
     this._tagFilter = tagId;
-    this._loadRecipesByFilter().then();
+    this._loadRecipesByFilter();
   }
   public recipes!: Recipe[];
 
@@ -32,6 +32,10 @@ export class RecipesComponent implements OnInit {
   }
 
   private async _loadRecipesByFilter(): Promise<void> {
+    if (this._tagFilter == -1 || this._tagFilter === undefined) {
+      return await this._loadAllRecipes();
+    }
+
     await this._recipeService.getRecipesByTag(this._tagFilter)
       .then(res => res.subscribe({
         next: recipes => this.recipes = recipes,

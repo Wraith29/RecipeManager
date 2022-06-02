@@ -1,0 +1,12 @@
+<form (ngSubmit)="handleSubmit($event)">
+    <span class="form-line">
+        <input [(ngModel)]="recipeName" type="text" name="input" placeholder="Name" />
+    </span>
+    <span class="form-line">
+        <input [(ngModel)]="recipeShortDescription" type="text" name="short-description" placeholder="Short Description" />
+    </span>
+    <span class="form-line">
+        <textarea [(ngModel)]="recipeLongDescription" name="long-description" placeholder="Long Description"></textarea>
+    </span>
+    <input type="submit" value="Create Recipe" />
+</form>
