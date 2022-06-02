@@ -36,7 +36,6 @@ def get_single_recipe_route() -> tuple[Response, int]:
 @recipe_bp.post('create')
 def post_recipe_route() -> tuple[Response, int]:
     args = request.json
-    print(request.method)
     if not args:
         return make_response("args not found"), 400
     if not all([item in args for item in ['name', 'short-description', 'long-description']]):

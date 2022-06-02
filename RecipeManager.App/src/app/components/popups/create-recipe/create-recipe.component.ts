@@ -25,6 +25,7 @@ export class CreateRecipeComponent implements OnInit {
        error: err => console.error(err)
      }));
     this._clearForm();
+    this.closeWindow.emit(true);
   }
 
   public closeWindowPresed(): void {

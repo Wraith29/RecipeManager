@@ -1,13 +1,14 @@
 <button class="close-window-button" (click)="closeWindowPresed()">X</button>
 <form (ngSubmit)="handleSubmit($event)" class="recipe-form">
-    <span class="recipe-form-input">
-        <input [(ngModel)]="recipeName" type="text" name="input" placeholder="Name" />
-    </span>
-    <span class="recipe-form-input">
-        <input [(ngModel)]="recipeShortDescription" type="text" name="short-description" placeholder="Short Description" />
-    </span>
-    <span class="recipe-form-input">
-        <textarea [(ngModel)]="recipeLongDescription" name="long-description" placeholder="Long Description"></textarea>
-    </span>
-    <input class="recipe-form-input" type="submit" value="Create Recipe" />
+  <h3 class="popup-title">Submit a new Recipe</h3>
+  <span class="recipe-form-input-container">
+    <input class="recipe-form-input" [(ngModel)]="recipeName" type="text" name="input" placeholder="Name" />
+  </span>
+  <span class="recipe-form-input-container">
+    <input class="recipe-form-input" [(ngModel)]="recipeShortDescription" type="text" name="short-description" placeholder="Short Description" />
+  </span>
+  <span class="recipe-form-input-container">
+    <textarea rows="35" class="recipe-form-input description-textarea" [(ngModel)]="recipeLongDescription" name="long-description" placeholder="Long Description"></textarea>
+  </span>
+  <input class="recipe-form-input-container submit-button" type="submit" value="Create Recipe" />
 </form>
