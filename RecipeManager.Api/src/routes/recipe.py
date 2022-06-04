@@ -10,6 +10,7 @@ from src.data.recipe import (
     remove_tag_from_recipe,
     get_recipes_by_tag_id
 )
+from src.data.tag import get_tags_by_recipe_id
 
 recipe_bp = Blueprint('recipe', __name__, url_prefix='/recipe')
 
@@ -91,3 +92,18 @@ def get_recipes_by_tag_route() -> tuple[Response, int]:
         return jsonify(recipes), 200
     except ValueError:
         return make_response("Invalid type for 'tag-id'"), 400
+
+
+@recipe_bp.get("tag-map")
+def get_recipe_tag_map_route() -> tuple[Response, int]:
+    recipes = get_all_recipes(get_db())
+    connection = get_db()
+    recipe_tag_map = {"recipes": [{"recipe": recipe, "tags": get_tags_by_recipe_id(connection, recipe.id)} for recipe in recipes]}
+    return jsonify(recipe_tag_map), 200
+
+
+@recipe_bp.get("tag-map-filter")
+def get_recipe_tag_map_with_filter_route() -> tuple[Response, int]:
+    args = request.args
+    if 'tag-id' not in args:
+        return make_response("Missing 'tag-id' from args"), 400
