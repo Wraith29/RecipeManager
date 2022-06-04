@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RecipeService } from "../../services/recipe.service";
 import { Recipe } from "../../types/recipe";
+import { RecipeTagMap } from "../../types/recipe-tag-map";
 
 @Component({
   selector: 'app-recipes',
@@ -8,12 +9,13 @@ import { Recipe } from "../../types/recipe";
   styleUrls: ['./recipes.component.less']
 })
 export class RecipesComponent implements OnInit {
-  private _tagFilter: number = -1;
   @Input() public set tagFilter(tagId: number) {
     this._tagFilter = tagId;
     this._loadRecipesByFilter();
   }
-  public recipes!: Recipe[];
+
+  private _tagFilter: number = -1;
+  public recipeTagMap!: RecipeTagMap;
 
   constructor(
     private _recipeService: RecipeService
@@ -24,10 +26,10 @@ export class RecipesComponent implements OnInit {
   }
 
   private async _loadAllRecipes(): Promise<void> {
-    await this._recipeService.getAllRecipes()
+    await this._recipeService.getRecipeTagMap()
       .then(res => res.subscribe({
-        next: val => this.recipes = val,
-        error: err => console.error(err),
+        next: val => this.recipeTagMap = val,
+        error: err => console.error(err)
       }));
   }
 

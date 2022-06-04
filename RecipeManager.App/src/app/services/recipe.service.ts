@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ConfigService } from "./config.service";
 import { Recipe } from "../types/recipe";
 import { Observable } from "rxjs";
+import { RecipeTagMap } from '../types/recipe-tag-map';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,9 @@ export class RecipeService {
     private _configService: ConfigService
   ) {}
 
-  public async getAllRecipes(): Promise<Observable<Recipe[]>> {
-    return await this._buildUrl("all")
-      .then(url => this._http.get<Recipe[]>(url)
-    );
+  public async getRecipeTagMap(): Promise<Observable<RecipeTagMap>> {
+    return await this._buildUrl("tag-map")
+      .then(url => this._http.get<RecipeTagMap>(url));
   }
 
   public async getRecipeById(recipeId: number): Promise<Observable<Recipe>> {

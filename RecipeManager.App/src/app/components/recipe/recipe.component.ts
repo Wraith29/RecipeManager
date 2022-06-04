@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Recipe } from "../../types/recipe";
+import { Tag } from 'src/app/types/tag';
 
 @Component({
   selector: 'app-recipe',
@@ -7,8 +7,9 @@ import { Recipe } from "../../types/recipe";
   styleUrls: ['./recipe.component.less']
 })
 export class RecipeComponent implements OnInit {
-  @Input() public recipe!: Recipe
+  @Input() public recipeName!: string;
+  @Input() public tags!: Tag[];
 
   constructor() { }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }
