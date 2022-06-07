@@ -1,3 +1,5 @@
 <div class="outer-recipe">
-  <!-- TODO: Add Recipe Details -> Including Tag List-->
+  <h3 class="recipe-name">{{recipe.name}}</h3>
+  <app-tag-list class="outer-tag-list" [tags]="tags"></app-tag-list>
+  <p>{{recipe.shortDescription}}</p>
 </div>

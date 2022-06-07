@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterMiddlewareComponent } from './components/filter-middleware/filter-middleware.component';
 import { CreateRecipeComponent } from './components/popups/create-recipe/create-recipe.component';
 import { RecipePopupContainerComponent } from './components/popups/recipe-popup-container/recipe-popup-container.component';
+import { MultiSelectComponent } from './components/multi-select/multi-select.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RecipePopupContainerComponent } from './components/popups/recipe-popup-
     TagFilterComponent,
     FilterMiddlewareComponent,
     CreateRecipeComponent,
-    RecipePopupContainerComponent
+    RecipePopupContainerComponent,
+    MultiSelectComponent
   ],
   imports: [
     BrowserModule,

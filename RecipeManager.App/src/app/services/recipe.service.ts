@@ -19,6 +19,15 @@ export class RecipeService {
       .then(url => this._http.get<RecipeTagMap>(url));
   }
 
+  public async getFilteredRecipeTagMap(tagId: number): Promise<Observable<RecipeTagMap>> {
+    return await this._buildUrl("tag-map-filter")
+      .then(url => this._http.get<RecipeTagMap>(url, {
+        params: {
+          'tag-id': tagId
+        }
+      }));
+  }
+
   public async getRecipeById(recipeId: number): Promise<Observable<Recipe>> {
     return await this._buildUrl("by-id")
       .then(url => this._http.get<Recipe>(url, {
@@ -38,9 +47,9 @@ export class RecipeService {
       }));
   }
 
-  public async createRecipe(name: string, shortDescription: string, longDescription: string) {
+  public async createRecipe(name: string, shortDescription: string, longDescription: string, tags: Set<number>) {
     return await this._buildUrl("create")
-      .then(url => this._http.post(url, {'name': name, 'short-description': shortDescription, 'long-description': longDescription}, {
+      .then(url => this._http.post(url, {'name': name, 'short-description': shortDescription, 'long-description': longDescription, 'tags': Array.from(tags.values())}, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })

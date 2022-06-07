@@ -39,9 +39,11 @@ def post_recipe_route() -> tuple[Response, int]:
     args = request.json
     if not args:
         return make_response("args not found"), 400
-    if not all([item in args for item in ['name', 'short-description', 'long-description']]):
+    if not all([item in args for item in ['name', 'short-description', 'long-description', 'tags']]):
         return make_response("Missing 'name', 'short-description', or 'long-description'"), 400
     recipe_id = create_recipe(get_db(), args['name'], args['short-description'], args['long-description'])
+    for tag_id in args['tags']:
+        put_tag_on_recipe(get_db(), recipe_id, tag_id)
     return jsonify({"id": recipe_id}), 200
 
 
@@ -105,5 +107,12 @@ def get_recipe_tag_map_route() -> tuple[Response, int]:
 @recipe_bp.get("tag-map-filter")
 def get_recipe_tag_map_with_filter_route() -> tuple[Response, int]:
     args = request.args
+    connection = get_db()
     if 'tag-id' not in args:
         return make_response("Missing 'tag-id' from args"), 400
+    try:
+        recipes = get_recipes_by_tag_id(connection, int(args['tag-id']))
+        return jsonify({"recipes": [{"recipe": recipe, "tags": get_tags_by_recipe_id(connection, recipe.id)} for recipe in recipes]}), 200
+    except ValueError:
+        return make_response("Invalid type for 'tag-id'"), 400
+    

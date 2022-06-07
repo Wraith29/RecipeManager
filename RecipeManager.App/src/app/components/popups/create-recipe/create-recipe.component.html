@@ -1,17 +1,17 @@
 <button class="close-window-button" (click)="closeWindowPresed()">X</button>
 <form (ngSubmit)="handleSubmit($event)" class="recipe-form">
   <h3 class="popup-title">Submit a new Recipe</h3>
-  <span class="recipe-form-input-container name-tags-input-container">
-    <input class="recipe-form-input name-input" [(ngModel)]="recipeName" type="text" name="input" placeholder="Name" />
-    <select class="tags-input">
-      <option>a</option>
-    </select>
+  <div class="recipe-form-input-container">
+    <div class="name-tags-input-container">
+      <input class="recipe-form-input name-input" [(ngModel)]="recipeName" type="text" name="name-input" placeholder="Name" />
+      <app-multi-select class="recipe-form-input tags-input" [options]="mappedTags" (multiSelectEmitter)="handleMultiSelectEmitter($event)"></app-multi-select>
+    </div>
+  </div>
+  <span class="recipe-form-input-container">
+    <input class="recipe-form-input" [(ngModel)]="recipeShortDescription" type="text" name="short-description-input" placeholder="Short Description" />
   </span>
   <span class="recipe-form-input-container">
-    <input class="recipe-form-input" [(ngModel)]="recipeShortDescription" type="text" name="short-description" placeholder="Short Description" />
-  </span>
-  <span class="recipe-form-input-container">
-    <textarea rows="35" class="recipe-form-input description-textarea" [(ngModel)]="recipeLongDescription" name="long-description" placeholder="Long Description"></textarea>
+    <textarea rows="35" class="recipe-form-input description-textarea" [(ngModel)]="recipeLongDescription" name="long-description-input" placeholder="Long Description"></textarea>
   </span>
   <input class="recipe-form-input-container submit-button" type="submit" value="Create Recipe" />
 </form>

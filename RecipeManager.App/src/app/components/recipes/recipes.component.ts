@@ -38,9 +38,9 @@ export class RecipesComponent implements OnInit {
       return await this._loadAllRecipes();
     }
 
-    await this._recipeService.getRecipesByTag(this._tagFilter)
+    await this._recipeService.getFilteredRecipeTagMap(this._tagFilter)
       .then(res => res.subscribe({
-        next: recipes => this.recipes = recipes,
+        next: val => this.recipeTagMap = val,
         error: err => console.error(err)
       }))
   }

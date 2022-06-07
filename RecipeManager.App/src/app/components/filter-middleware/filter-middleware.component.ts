@@ -10,8 +10,7 @@ export class FilterMiddlewareComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   public catchFilterId(tagId: number): void {
     this.currentFilter = tagId;

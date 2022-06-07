@@ -33,7 +33,7 @@ def delete_tag_by_id(db: sql.Connection, tag_id: int) -> None:
     db.commit()
 
 
-def get_tags_by_recipe_id(db: sql.Connection, recipe_id: int) -> list[Tag]:
+def get_tags_by_recipe_id(db: sql.Connection, recipe_id: Optional[int]) -> list[Tag]:
     query = """
         SELECT Name, Id
         FROM 'Tag' T
