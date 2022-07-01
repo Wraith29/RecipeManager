@@ -24,7 +24,7 @@ import { MultiSelectComponent } from './components/multi-select/multi-select.com
     FilterMiddlewareComponent,
     CreateRecipeComponent,
     RecipePopupContainerComponent,
-    MultiSelectComponent
+    MultiSelectComponent,
   ],
   imports: [
     BrowserModule,
