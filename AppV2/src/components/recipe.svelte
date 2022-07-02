@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Tag from './tag.svelte';
   import type { IRecipe, ITag } from '../data/types';
+  import TagList from './tag-list.svelte';
 
   export let recipe: IRecipe;
   export let tags: ITag[];
@@ -8,9 +8,7 @@
 
 <main>
   <h3>{recipe.name}</h3>
-  {#each tags as tag}
-    <Tag {tag} />
-  {/each}
+  <TagList {tags} />
 </main>
 
 <style></style>

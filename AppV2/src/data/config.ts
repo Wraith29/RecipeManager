@@ -1,5 +1,5 @@
-import * as appSettings from '../appsettings.json'
+import * as appSettings from '../appsettings.json';
 
 export function getBaseUrl(): string {
-    return appSettings.baseUrl;
+  return appSettings.baseUrl;
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { RecipeClient, TagClient } from '../data/requests';
+  import { RecipeClient, TagClient } from '../data/clients';
 
   let recipeClient = new RecipeClient();
   let tagClient = new TagClient();
