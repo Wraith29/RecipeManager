@@ -1,8 +1,0 @@
-.env/
-.idea/
-.mypy_cache/
-.vscode/
-instance/
-.angular/
-node_modules/
-__pycache__/

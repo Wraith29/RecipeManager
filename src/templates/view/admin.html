@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet/less" type="text/css" href="{{ url_for('static', filename='styles/admin.less') }}" />
+{% endblock %}
+
+{% block title %}
+Admin
+{% endblock %}
+
+{% block content %}
+<a href="/"><button>Home</button></a>
+
+<table class="admin-table">
+    <tr>
+        <th>Recipe</th>
+        <th>Tag</th>
+        <th>RecipeTagMap</th>
+    </tr>
+    <tr>
+        <td class="data-table-definition recipe-table">
+            <table class="data-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Id</th>
+                </tr>
+                {% for recipe in recipes %}
+                <tr>
+                    <td>{{recipe.name}}</td>
+                    <td class="id-column">{{recipe.recipe_id}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+        <td class="data-table-definition tag-table">
+            <table class="data-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Id</th>
+                </tr>
+                {% for tag in tags %}
+                <tr>
+                    <td>{{tag.name}}</td>
+                    <td class="id-column">{{tag.tag_id}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+        <td class="data-table-definition recipe-tag-table">
+            <table class="data-table">
+                <tr>
+                    <th>RecipeId</th>
+                    <th>TagId</th>
+                </tr>
+                {% for rtm in rtms %}
+                <tr>
+                    <th class="id-column">{{rtm.recipe_id}}</th>
+                    <th class="id-column">{{rtm.tag_id}}</th>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}
