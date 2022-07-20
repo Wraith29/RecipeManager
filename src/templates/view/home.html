@@ -13,87 +13,60 @@ Recipe Manager
 
 {% if tags %}
 <div class="tag-filter-grid">
-    <select class="tag-filter" onchange="filter(event)">
-        <option value="0">No Filter</option>
-        {% for tag in tags %}
-        <option value="{{tag.tag_id}}">{{tag.name}}</option>
-        {% endfor %}
-    </select>
+  <select class="tag-filter" onchange="filter(event)">
+    <option value="0">No Filter</option>
+    {% for tag in tags %}
+    <option value="{{tag.tag_id}}">{{tag.name}}</option>
+    {% endfor %}
+  </select>
 </div>
 {% endif %}
 
 <div class="recipes" id="recipe-container">
-    {% for rtm in recipe_tag_maps %}
-    <div class="recipe" onclick="toggleRecipe('{{rtm.recipe.recipe_id}}')">
-        <div class="recipe-name-tag-container">
-            <h4 class="recipe-name">{{rtm.recipe.name}}</h4>
-            {% if rtm.tags %}
-            <div class="tags">
-                {% for tag in rtm.tags %}
-                <p class="tag tag-{{tag.tag_id}}" id="recipe-{{rtm.recipe.recipe_id}}-tag-{{tag.tag_id}}">
-                    {{tag.name}}
-                </p>
-                {% endfor %}
-            </div>
-            {% endif %}
-        </div>
-        <p class="recipe-short-description">{{rtm.recipe.short_description}}</p>
+  {% for rtm in recipe_tag_maps %}
+  <div class="recipe" onclick="toggleRecipe('{{rtm.recipe.recipe_id}}')">
+    <div class="recipe-name-tag-container">
+      <h4 class="recipe-name">{{rtm.recipe.name}}</h4>
+      {% if rtm.tags %}
+      <div class="tags">
+        {% for tag in rtm.tags %}
+        <p class="tag tag-{{tag.tag_id}}" id="recipe-{{rtm.recipe.recipe_id}}-tag-{{tag.tag_id}}">
+          {{tag.name}}
+        </p>
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
-    {% endfor %}
-    <div class="new-recipe-container">
-        <button class="new-recipe-button" onclick="toggleNewRecipe()">New Recipe</button>
-    </div>
+    <p class="recipe-short-description">{{rtm.recipe.short_description}}</p>
+  </div>
+  {% endfor %}
+  <div class="new-recipe-container">
+    <button class="new-recipe-button" onclick="toggleNewRecipe()">New Recipe</button>
+  </div>
 </div>
 
 <div class="popups" id="recipe-popup-container">
-    {% for rtm in recipe_tag_maps %}
-    <div class="popup recipe-popup" id="recipe-popup-{{rtm.recipe.recipe_id}}">
-        <div class="popup-top-row">
-            <h2 class="popup-title">{{rtm.recipe.name}}</h2>
-            <button class="popup-close-button" onclick="toggleRecipe('{{rtm.recipe.recipe_id}}')">X</button>
-        </div>
-        <div class="popup-center-row">
-            <p class="popup-recipe-description">{{rtm.recipe.long_description}}</p>
-            <div class="popup-tag-list">
-                {% if rtm.tags %}
-                {% for tag in rtm.tags %}
-                <p class="popup-tag">{{tag.name}}</p>
-                {% endfor %}
-                {% endif %}
-                <button class="delete-recipe-button popup-tag" onclick="deleteRecipe('{{rtm.recipe.recipe_id}}')">
-                    Delete Recipe
-                </button>
-            </div>
-        </div>
+  {% for rtm in recipe_tag_maps %}
+  <div class="popup recipe-popup" id="recipe-popup-{{rtm.recipe.recipe_id}}">
+    <div class="popup-top-row">
+      <h2 class="popup-title">{{rtm.recipe.name}}</h2>
+      <button class="popup-close-button" onclick="toggleRecipe('{{rtm.recipe.recipe_id}}')">X</button>
     </div>
-    {% endfor %}
-</div>
-
-<div class="new-recipe-popup-container" id="new-recipe-popup-container">
-    <div class="popup new-recipe-popup">
-        <div class="popup-top-row">
-            <h2 class="popup-title">Create Recipe</h2>
-            <button class="popup-close-button" onclick="toggleNewRecipe()">X</button>
-        </div>
-        <form method="post" action="/create/recipe" class="recipe-popup-form">
-            <div class="form-row" id="recipe-name-row">
-                <label for="recipe-name-input" id="recipe-name-label">Name</label>
-                <input type="text" name="name" id="recipe-name-input" />
-            </div>
-            <div class="form-row">
-                <label for="recipe-short-description-input" id="recipe-short-description-label">
-			Short Description
-		</label>
-                <input type="text" name="short-description" id="recipe-short-description-input" />
-            </div>
-            <div class="form-row">
-                <label for="recipe-long-description-input" id="recipe-long-description-label">
-			Long Description
-		</label>
-                <input type="text" name="long-description" id="recipe-long-description-input" />
-            </div>
-            <input class="form-row" type="submit" value="Create Recipe" id="recipe-submit-input">
-        </form>
+    <div class="popup-center-row">
+      <p class="popup-recipe-description">{{rtm.recipe.long_description}}</p>
+      <div class="popup-tag-list">
+        {% if rtm.tags %}
+        {% for tag in rtm.tags %}
+        <p class="popup-tag">{{tag.name}}</p>
+        {% endfor %}
+        {% endif %}
+        <button class="delete-recipe-button popup-tag" onclick="deleteRecipe('{{rtm.recipe.recipe_id}}')">
+          Delete Recipe
+        </button>
+      </div>
     </div>
+  </div>
+  {% endfor %}
 </div>
+{% include './components/popups/create-recipe.html' %}
 {% endblock %}

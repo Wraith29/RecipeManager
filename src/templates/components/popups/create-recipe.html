@@ -1,0 +1,27 @@
+<div class="new-recipe-popup-container" id="new-recipe-popup-container">
+  <div class="popup new-recipe-popup">
+    <div class="popup-top-row">
+      <h2 class="popup-title">Create Recipe</h2>
+      <button class="popup-close-button" onclick="toggleNewRecipe()">X</button>
+    </div>
+    <form method="post" action="/create/recipe" class="recipe-popup-form">
+      <div class="form-row" id="recipe-name-row">
+        <label for="recipe-name-input" id="recipe-name-label">Name</label>
+        <input type="text" name="name" id="recipe-name-input" />
+      </div>
+      <div class="form-row">
+        <label for="recipe-short-description-input" id="recipe-short-description-label">
+          Short Description
+        </label>
+        <input type="text" name="short-description" id="recipe-short-description-input" />
+      </div>
+      <div class="form-row">
+        <label for="recipe-long-description-input" id="recipe-long-description-label">
+          Long Description
+        </label>
+        <textarea name="long-description" id="recipe-long-description-input"></textarea>
+      </div>
+      <input class="form-row" type="submit" value="Submit Recipe" id="recipe-submit-input" />
+    </form>
+  </div>
+</div>
