@@ -1,7 +1,8 @@
 from flask import Blueprint, redirect, render_template, request, url_for
-from werkzeug.wrappers.response import Response 
+from werkzeug.wrappers.response import Response
 
-from src.data import create_recipe, get_all_recipes, get_all_rtms, get_all_tags, get_tags_for_recipe
+from src.data import (create_recipe, get_all_recipes, get_all_rtms,
+                      get_all_tags, get_tags_for_recipe)
 from src.db import get_db
 from src.models import RecipeTagMapContainer
 

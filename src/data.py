@@ -1,5 +1,7 @@
 import sqlite3 as sql
+
 from src.models import Recipe, RecipeTagMap, Tag
+
 
 def get_all_recipes(db: sql.Connection) -> list[Recipe]:
     query = "SELECT [Name], [ShortDescription], [LongDescription], [Id] FROM 'Recipe'"

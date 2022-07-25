@@ -1,0 +1,21 @@
+<div class="recipes" id="recipe-container">
+  {% for rtm in recipe_tag_maps %}
+  <div class="recipe" onclick="toggleRecipe('{{rtm.recipe.recipe_id}}')">
+    <div class="recipe-name-tag-container">
+      <h4 class="recipe-name">{{rtm.recipe.name}}</h4>
+      {% if rtm.tags %}
+      <div class="tags">
+        {% for tag in rtm.tags %}
+        <p class="tag tag-{{tag.tag_id}}" id="recipe-{{rtm.recipe.recipe_id}}-tag-{{tag.tag_id}}">
+          {{tag.name}}
+        </p>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <p class="recipe-short-description">{{rtm.recipe.short_description}}</p>
+  </div>
+  {% endfor %}
+  <div class="new-recipe-container">
+    <button class="new-recipe-button" onclick="toggleNewRecipe()">New Recipe</button>
+  </div>

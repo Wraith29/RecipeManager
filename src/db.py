@@ -1,8 +1,10 @@
 import sqlite3 as sql
+from typing import Any, Optional, Union
+
 import click
-from typing import Union, Any, Optional
 from flask import Flask, current_app, g
 from flask.cli import with_appcontext
+
 
 def get_db() -> Union[sql.Connection, Any]:
     if "db" not in g:

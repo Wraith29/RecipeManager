@@ -1,0 +1,27 @@
+<div class="popups" id="recipe-popup-container">
+  {% for rtm in recipe_tag_maps %}
+  <div class="popup recipe-popup" id="recipe-popup-{{rtm.recipe.recipe_id}}">
+    <div class="popup-top-row">
+      <h2 class="popup-title">{{rtm.recipe.name}}</h2>
+      <button class="popup-close-button" onclick="toggleRecipe('{{rtm.recipe.recipe_id}}')">
+        X
+      </button>
+    </div>
+    <div class="popup-center-row">
+      <p class="popup-recipe-description">
+        {{rtm.recipe.long_description}}
+      </p>
+      <div class="popup-tag-list">
+        {% if rtm.tags %}
+        {% for tag in rtm.tags %}
+        <p class="popup-tag">{{tag.name}}</p>
+        {% endfor %}
+        {% endif %}
+        <button class="delete-recipe-button popup-tag" onclick="deleteRecipe('{{rtm.recipe.recipe_id}}')">
+          Delete Recipe
+        </button>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
